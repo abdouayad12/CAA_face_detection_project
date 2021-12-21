@@ -206,7 +206,93 @@ lblVideo.pack(side = LEFT, padx = 30)
 
 #====================================Import File Frame========================
 
+#Le frame pour importer une image/ une vidéo
+upload_frame = Frame(mainWidget,
 
+                             bg = '#021b34',
+                             bd = 2,
+
+                             )
+
+# bouton de retour à la fenetre de départ
+returnbtn2=Button(upload_frame,
+              text="retour en arrière",
+              bg = '#021b34',
+              font=("Courier", 12, "italic"),
+              relief = GROOVE,
+              height = 2,
+              padx = 2,
+              pady = 5,
+              cursor = 'exchange',
+              command = change_to_main_window,
+              bd = 0,
+
+              )
+returnbtn2.pack(anchor = NE,
+                padx = 2,
+                pady = 5)
+
+#Frame contenant le bouton de détection et le champ de saisie
+frm = LabelFrame(upload_frame,
+                 bg = '#021b34',
+                 bd = 2,
+                 fg = '#FFFFFF',
+                 )
+frm.pack( side = RIGHT,
+          padx = 2)
+
+# bouton d'importation d'un fichier
+boutonImport=Button(frm,
+              text="Importer une image/ vidéo source",
+              bg = '#021b34',
+              font=("Courier", 12, "italic"),
+              relief = GROOVE,
+              height = 2,
+              padx = 2,
+              pady = 5,
+              cursor = 'plus',
+              command = import_file,
+              bd = 0,
+              )
+boutonImport.pack(side = TOP, pady = 50)
+
+#Titre -> choix du nombre d'étudiants total
+labelStudentNB2 = Label(frm,
+                       text="choix du nombre total d'étudiants",
+                       pady = 5,
+                       bg = '#021b34',
+                       fg = '#FFFFFF',
+                       font=("Courier", 12, "italic"),
+                       )
+labelStudentNB2.pack(side = TOP, pady = 10)
+
+
+#Choix du nombre d'étudiants total
+studentsNB2 = IntVar()
+studentsNB2.set("saisissez le nombre d'étudiants de la promo!")
+entree = Entry(frm,
+               )
+entree.pack( pady = 10)
+
+# bouton pour lancer l'algorithme de détection du nombre d'absents
+launchDetection=Button(frm,
+              text="Lancer la détection",
+              bg = '#021b34',
+              font=("Courier", 12, "italic"),
+              relief = GROOVE,
+              height = 2,
+              padx = 2,
+              pady = 5,
+              cursor = 'exchange',
+              command = popup,
+              bd = 0,
+              ).pack(side = BOTTOM, padx = 30)
+
+#Label qui va contenir l'image importée
+lbl = Label(upload_frame,
+            bg = '#021b34',
+            )
+lbl.pack(side = LEFT, padx = 10)
 
 #Initialisation du frame principal "mainWidget"
 change_to_main_window()
