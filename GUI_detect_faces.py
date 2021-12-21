@@ -39,7 +39,33 @@ def change_to_main_window():
 
 def popup():
     messagebox.showinfo("Nombre d'absents","Le nombre d'absents est: 5!")
+    
+# fonctions relatives a l'interface graphique (celle d'importation d'une image pour la detection de visage )
+def import_file():
+    global img
+    filepath = askopenfilename(initialdir = os.getcwd(),title="Ouvrir une image",filetypes=[('JPG file','*.jpg'),('PNG file','*.png'),('All files','*.*')])
+    img = Image.open(filepath)
+    lar, long = img.size
+    if (lar > 720):
+        if(long > 480):
+            img = img.resize((720,480), Image.ANTIALIAS)
+        else:
+            img = img.resize((720,long), Image.ANTIALIAS)
+    elif(long > 480):
+            img = img.resize((lar,480), Image.ANTIALIAS)
 
+    #Conversion de l'image en an Array
+    img = np.array(img)
+    #Appel de l'algorithme de détection de visage
+    img = df.face_detection_algo(img)
+
+    img = Image.fromarray(img)
+    img = ImageTk.PhotoImage(img)
+    lbl.configure(image = img)
+    lbl.image = img
+
+def close_image():
+    lbl.configure(image = "")
 
 def detect_faces():
         global ret
