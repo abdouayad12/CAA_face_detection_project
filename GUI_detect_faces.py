@@ -44,14 +44,31 @@ def change_to_main_window():
 
 
 #Message box pour afficher le nombre d'absents
-def popup():
+def popup_camera():
     booleen = False
     if(entree.get()==''):
         messagebox.showinfo("Erreur!","Veuillez insérer un nombre valide !")
         booleen = True
 
     if not booleen:
-        messagebox.showinfo("Nombre d'absents","Le nombre d'absents est: {}!".format(nb_absents()))
+        messagebox.showinfo("Nombre d'absents","Le nombre d'absents est: {}!".format(nb_absents(entree)))
+
+    #Réinitialisation du champ de saisie
+    entree.delete(0,"end")
+
+
+#Message box pour afficher le nombre d'absents
+def popup_upload():
+    booleen = False
+    if(entree2.get()==''):
+        messagebox.showinfo("Erreur!","Veuillez insérer un nombre valide !")
+        booleen = True
+
+    if not booleen:
+        messagebox.showinfo("Nombre d'absents","Le nombre d'absents est: {}!".format(nb_absents(entree2)))
+
+    #Réinitialisation du champ de saisie
+    entree2.delete(0,"end")
 
 # fonctions relatives a l'interface graphique (celle d'importation d'une image pour la detection de visage )
 def import_file():
@@ -90,8 +107,10 @@ def detect_faces():
     ret,frame = cap.read()
     if ret == True:
         #Appel de l'algorithme de détection de visage
-        frame,nbEtudiantsPresents = df.face_detection_algo(frame)
-        print(nbEtudiantsPresents)
+        frame,maxFaces = df.face_detection_algo(frame)
+
+        if(maxFaces > nbEtudiantsPresents):
+            nbEtudiantsPresents = maxFaces
         #Affichage des résultats de détection
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         frame = imutils.resize(frame, width=720)
@@ -108,11 +127,11 @@ def detect_faces():
 
 
 #Calcul du nombre d'étudiants absents
-def nb_absents():
+def nb_absents(e):
     global nbEtudiantsPresents
     global nbEtudiantsTotal
     nbEtudiantsTotal = 0
-    nbEtudiantsTotal = int(entree.get())
+    nbEtudiantsTotal = int(e.get())
     return (nbEtudiantsTotal - nbEtudiantsPresents)
 
 
@@ -260,7 +279,7 @@ launchDetection=Button(buttonsContainerFrame,
                        relief = GROOVE,
                        height = 2,
                        cursor = 'exchange',
-                       command = popup,
+                       command = popup_camera,
                        ).pack(side = BOTTOM, pady = 10)
 
 
@@ -335,10 +354,10 @@ studentsNB2 = IntVar()
 studentsNB2.set("saisissez le nombre d'étudiants de la promo!")
 
 #Configuration du champ de saisie
-vcmd = (upload_frame.register(callback))
+vcmd2 = (upload_frame.register(callback))
 
-entree = Entry(frm, validate='all', validatecommand=(vcmd, '%P'))
-entree.pack( pady = 10)
+entree2 = Entry(frm, validate='all', validatecommand=(vcmd2, '%P'))
+entree2.pack( pady = 10)
 
 # bouton pour lancer l'algorithme de détection du nombre d'absents
 launchDetection=Button(frm,
@@ -350,7 +369,7 @@ launchDetection=Button(frm,
                        padx = 2,
                        pady = 5,
                        cursor = 'exchange',
-                       command = popup,
+                       command = popup_upload,
                        bd = 0,
                        ).pack(side = BOTTOM, padx = 30, pady = 10)
 
