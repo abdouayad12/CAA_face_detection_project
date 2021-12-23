@@ -1,7 +1,7 @@
 import cv2
 
 def face_detection_algo(frame):
-
+	nbEtudiantsAbsents = 0
 	# Chemin du Classifier
 	cascadeClassifierPath = 'haarcascade_frontalface_alt.xml'
 	cascadeClassifier = cv2.CascadeClassifier(cascadeClassifierPath)
@@ -13,6 +13,10 @@ def face_detection_algo(frame):
 	for(x,y, width, height) in detectedFaces:
 		# Dessin d'un rectangle autour de(s) visage(s) détecté(s)
 		cv2.rectangle(frame, (x, y), (x+width, y+height), (0,255,0), 3)
-	return frame
+
+		#Comptage du nombre de visage détectés
+		nbEtudiantsAbsents+=1
+
+	return frame, nbEtudiantsAbsents
 
 

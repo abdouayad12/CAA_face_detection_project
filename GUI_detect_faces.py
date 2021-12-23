@@ -21,7 +21,6 @@ def change_to_camera_frame():
    global cap
    cap = cv2.VideoCapture(0)
    detect_faces()
-   #visualisation()
    FrameContainer.forget()
    upload_frame.forget()
 
