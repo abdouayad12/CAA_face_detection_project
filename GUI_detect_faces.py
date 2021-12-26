@@ -147,7 +147,17 @@ def callback(P):
 mainWidget = Tk()
 mainWidget.title("Comptage du nombre d'absents")
 mainWidget.geometry("1080x720")
-mainWidget.configure(background = '#021b34')
+
+#Ajout de la barre de menu
+menubar = Menu(mainWidget)
+
+menu1 = Menu(menubar, tearoff=0)
+menu1.add_command(label="Nouveau", command=change_to_main_window)
+menu1.add_separator()
+menu1.add_command(label="Quitter", command=mainWidget.quit)
+menubar.add_cascade(label="Fichier", menu=menu1)
+
+mainWidget.configure(background = '#021b34', menu = menubar)
 
 #Récupération de la taille de la fenêtre(width and height)
 screen_width = mainWidget.winfo_screenwidth()
