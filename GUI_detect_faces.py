@@ -26,6 +26,8 @@ def change_to_camera_frame():
 
 #Fontion qui permet de changer au Frame Upload_image
 def change_to_upload_frame():
+    #désactiver le button de détection
+    launchDetection2.configure(state = 'disabled')
     upload_frame.pack( fill = "both",expand="yes")
     FrameContainer.forget()
     camera_frame.forget()
@@ -94,6 +96,8 @@ def import_file():
     img = ImageTk.PhotoImage(img)
     lbl.configure(image = img)
     lbl.image = img
+    #Activer le button de détection
+    launchDetection2.configure(state = 'normal')
 
 #Fermeture de l'image importée
 def close_image():
@@ -143,11 +147,23 @@ def callback(P):
         return False
 
 
+
 #Configuration de la fenêtre principale
 mainWidget = Tk()
 mainWidget.title("Comptage du nombre d'absents")
 mainWidget.geometry("1080x720")
-mainWidget.configure(background = '#021b34')
+
+
+#Ajout de la barre de menu
+menubar = Menu(mainWidget)
+
+menu1 = Menu(menubar, tearoff=0)
+menu1.add_command(label="Nouveau", command=change_to_main_window)
+menu1.add_separator()
+menu1.add_command(label="Quitter", command=mainWidget.quit)
+menubar.add_cascade(label="Fichier", menu=menu1)
+
+mainWidget.configure(background = '#021b34', menu = menubar)
 
 #Récupération de la taille de la fenêtre(width and height)
 screen_width = mainWidget.winfo_screenwidth()
@@ -159,6 +175,7 @@ img = None
 #Initialisation du nombre d'étudiants de la section et du nombre d'étudiants présents
 nbEtudiantsPresents = 0
 nbEtudiantsTotal = 0
+
 #Frame contenant le frame du choix du fichier source/ lancement de la cam
 FrameContainer = LabelFrame(mainWidget,
                             text="Accéder à la caméra/ Importez une image ou une vidéo source! ",
@@ -360,7 +377,7 @@ entree2 = Entry(frm, validate='all', validatecommand=(vcmd2, '%P'))
 entree2.pack( pady = 10)
 
 # bouton pour lancer l'algorithme de détection du nombre d'absents
-launchDetection=Button(frm,
+launchDetection2=Button(frm,
                        text="Lancer la détection",
                        bg = '#021b34',
                        font=("Courier", 12, "italic"),
@@ -371,8 +388,9 @@ launchDetection=Button(frm,
                        cursor = 'exchange',
                        command = popup_upload,
                        bd = 0,
-                       ).pack(side = BOTTOM, padx = 30, pady = 10)
-
+                       state = DISABLED
+                       )
+launchDetection2.pack(side = BOTTOM, padx = 30, pady = 10)
 #Label qui va contenir l'image importée
 lbl = Label(upload_frame,
             bg = '#021b34',

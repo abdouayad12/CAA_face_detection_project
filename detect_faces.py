@@ -8,7 +8,7 @@ def face_detection_algo(frame):
 	# Conversion des images obtenues à niveaux de gris afin d'appliquer l'algorithme de détection
 	grayImage = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 	#Détection des visages
-	detectedFaces= cascadeClassifier.detectMultiScale(grayImage,  scaleFactor=1.1, minNeighbors=10, minSize=(20, 20))
+	detectedFaces= cascadeClassifier.detectMultiScale(grayImage,  scaleFactor=1.1, minNeighbors=8, minSize=(20, 20))
 
 	for(x,y, width, height) in detectedFaces:
 		# Dessin d'un rectangle autour de(s) visage(s) détecté(s)
