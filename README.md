@@ -36,3 +36,8 @@ $ pip install opencv-contrib-python
 $ pip install tk
 
 ```
+
+## Utilisation de l'application 
+
+Pour utiliser l'application il faut disposer soit d'une Webcam pour la détection du nombre d'absents en temps réel soit d'une image déjà prise pour l'importer afin de détecter le nombre d'absents sur cette image.
+
