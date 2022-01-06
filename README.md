@@ -23,8 +23,11 @@ Projet réalisé en **Décembre 2021** comme travail pratique universitaire, Dom
 - **TKinter**
 
 ## Build
-Pour que l'application marche normalement il faut qu'un interpréteur **Python** soit déjà installé sur la machine dans laquelle ce projet va être exécuté. Puis si vous utilisez un **IDE** (Pycharm, Intellij Idea...), il suffit d'importer le projet, ensuite de configurer l'interpréteur Python (choisir le module SDK, exp-> Python 3.9.7), pour ce faire il suffit de suivre les étapes suivantes: File >Project Structure >Modules >module SDK.
-
+Pour que l'application marche normalement il faut qu'un interpréteur **Python** soit déjà installé sur la machine dans laquelle ce projet va être exécuté. Puis si vous utilisez un **IDE** (Pycharm, Intellij Idea...), il suffit d'importer le projet, ensuite de configurer l'interpréteur Python (choisir le module SDK, exp-> Python 3.9.7), pour ce faire il suffit de suivre les étapes suivantes:
+* Configuration d'interpréteur
+```sh
+File >Project Structure >Modules >module SDK.
+```
 ### Importation des librairies
 Dans ce projet il faut aussi installer des librairies externes tels que OpenCV et Tkinter, pour cela il faut ouvrir le terminal (utilisation des lignes de commande):
 
@@ -44,9 +47,8 @@ Installation du module TKinter(généralement il est installé dans la librairie
 $ pip install tk
 ```
 
-
-
 ## Utilisation de l'application 
 
-Pour utiliser l'application il faut disposer soit d'une Webcam pour la détection du nombre d'absents en temps réel soit d'une image déjà prise pour l'importer afin de détecter le nombre d'absents sur cette image.
+Pour utiliser l'application il faut avoir soit une Webcam pour la détection du nombre d'absents en temps réel soit une image déjà prise pour l'importer afin de détecter le nombre d'absents sur cette image.
+
 
