@@ -7,12 +7,11 @@ Projet réalisé en **Décembre 2021** comme travail pratique universitaire, Dom
 ## Contenu du projet
 ```text
 .
-├── src                                        <- Contenant le code source Python de ce projet.
-│    ├── GUI_detect_faces.py                   <- Contenant l'interface graphique de ce projet ainsi l'appel de la méthode de détection de visage (c'est le fichier "main")
-│    ├── detect_faces.py                       <- Contenant la méthode de détection de visage.
-│    ├── haarcascade_frontalface_alt.xml       <- Un fichier XML contenant le calcul des caractéristiques du visage.
+├── GUI_detect_faces.py                   <- Contenant l'interface graphique de ce projet ainsi l'appel de la méthode de détection de visage (c'est le fichier "main")
+├── detect_faces.py                       <- Contenant la méthode de détection de visage.
+├── haarcascade_frontalface_alt.xml       <- Un fichier XML contenant le calcul des caractéristiques du visage.
 │
-├── Rapport.pdf                                <- Rapport du projet : Définitions, Comparaisons et Analyses des résultats
+├── Rapport.pdf                           <- Rapport du projet : Définitions, Comparaisons et Analyses des résultats
 │
-└── README.md                                  <- Informations sur ce projet.
+└── README.md                             <- Informations sur ce projet.
 ```
